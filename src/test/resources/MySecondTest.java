@@ -1,5 +1,3 @@
-package ru.stqa.training.selenium;
-
 import org.junit.Test;
 import org.openqa.selenium.By;
 

@@ -1,11 +1,9 @@
-package ru.stqa.training.selenium;
-
 import org.junit.Test;
 import org.openqa.selenium.By;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
-public class MyFirstTest extends TestBase {
+public class MyThirdTest extends TestBase {
 
     @Test
     public void myFirstTest() {
