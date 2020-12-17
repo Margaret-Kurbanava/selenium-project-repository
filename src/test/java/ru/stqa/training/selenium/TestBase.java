@@ -16,8 +16,7 @@ public class TestBase {
     @Before
     public  void SetUp()  {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\MKU\\seleniumlearning\\resources\\chromedriver.exe");
-        //fist part- just copy as is, second part- specify path to chromedriver
+
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
