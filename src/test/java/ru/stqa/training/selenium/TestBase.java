@@ -14,14 +14,19 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-    public WebDriver driver;
+    public static WebDriver driver;
+    public static WebDriverWait wait;
 
     @Before
     public  void SetUp()  {
 
+        if (driver != null) {
+        return;
+        }
+
         //Capabilities -dismiss unexpected browser alerts
-        ChromeOptions caps = new ChromeOptions();
-        caps.setCapability("unexpectedAlertBehaviour", "dismiss");
+       ChromeOptions caps = new ChromeOptions();
+       caps.setCapability("unexpectedAlertBehaviour", "dismiss");
 
         // DesiredCapabilities caps = new DesiredCapabilities();
         // caps.setCapability("unexpectedAlertBehaviour", "dismiss");
@@ -35,6 +40,12 @@ public class TestBase {
 
         //print all Capabilities
         System.out.println(((HasCapabilities) driver).getCapabilities());
+
+        wait = new WebDriverWait(driver, 10);
+
+
+        Runtime.getRuntime().addShutdownHook(
+                new Thread(() -> { driver.quit(); driver = null; }));
     }
 
 
@@ -42,6 +53,6 @@ public class TestBase {
 
     @After
     public void stop() {
-        driver.quit();
+       // driver.quit();
     }
 }
