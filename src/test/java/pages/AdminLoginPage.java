@@ -2,9 +2,10 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class AdminLoginPage {
-    private WebDriver driver;
+    private  WebDriver driver;
 
 
     private String adminLoginPage = "http://localhost/litecart/admin/login.php";
@@ -29,7 +30,9 @@ public class AdminLoginPage {
     }
 
     public void clickLogin(){
+
         driver.findElement(loginButton).click();
+
     }
 
 
