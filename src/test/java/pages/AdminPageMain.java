@@ -11,24 +11,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static java.lang.Thread.*;
+
 public class AdminPageMain {
 
     private  WebDriver driver;
 
-  private By menuLink = By.cssSelector("#box-apps-menu-wrapper a");
+  private By menuLink = By.cssSelector("#app- >a");
+  private By nestedLink = By.cssSelector(".docs a");
+
     private By title = By.tagName("h1");
 
     public AdminPageMain (WebDriver driver) {this.driver= driver;}
 
-    public void checkLinks(){
+    public void checkLinks() throws InterruptedException {
         List<WebElement> menuLinks =driver.findElements(menuLink);
-        for (int i = 0; i <= menuLinks.size(); i++) {
+
+        for (int i = 0; i < menuLinks.size(); i++) {
+            sleep(40);
             menuLinks.get(i).click();
             driver.findElement(title).isDisplayed();
+
+
+
+            List<WebElement> nestedLinks =driver.findElements(nestedLink);
+            for (int j = 0; j < nestedLinks.size(); j++)  {
+               nestedLinks.get(j).click();
+                driver.findElement(title).isDisplayed();
+                nestedLinks =driver.findElements(nestedLink);
+
+            }
+
             menuLinks =driver.findElements(menuLink);
 
         }
+
+
     }
-
-
 }

@@ -20,7 +20,7 @@ public class TestAdminPage extends TestBase{
 
 
     @Test
-    public void testAdminMenu(){
+    public void testAdminMenu() throws InterruptedException {
 
         AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.openAdminLoginPage();
