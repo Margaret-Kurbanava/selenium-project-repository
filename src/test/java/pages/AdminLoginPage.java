@@ -36,4 +36,12 @@ public class AdminLoginPage {
     }
 
 
+    public void loginToAdmin(){
+       openAdminLoginPage();
+       enterUsename("admin");
+       enterPassword("admin");
+       clickLogin();
+    }
+
+
 }
