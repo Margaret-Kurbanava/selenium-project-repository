@@ -2,6 +2,7 @@ package ru.stqa.training.selenium;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.Color;
 import pages.LitecartMain;
 import pages.ProductPage;
 
@@ -13,6 +14,36 @@ import static org.junit.Assert.assertTrue;
 
 
 public class TestProducts extends TestBase{
+
+
+    public boolean isGrey(String color){
+        Color rgbaColor = Color.fromString(color);
+        String rgba = rgbaColor.asRgba();
+        String[] value = rgba.replace("rgba(", "").replace(" ", "").replace(")", "").split(",");
+        System.out.println("R" + value[0]);
+        System.out.println("G" + value[1]);
+        System.out.println("B" + value[2]);
+
+
+        return ( Integer.valueOf(value[0]) == Integer.valueOf(value[1]) && Integer.valueOf(value[1]) == Integer.valueOf(value[2]));
+
+    }
+
+
+
+    public boolean isRed (String color){
+        Color rgbaColor = Color.fromString(color);
+        String rgba = rgbaColor.asRgba();
+        String[] value = rgba.replace("rgba(", "").replace(" ", "").replace(")", "").split(",");
+        System.out.println("R" + value[0]);
+        System.out.println("G" + value[1]);
+        System.out.println("B" + value[2]);
+
+
+        return ( Integer.valueOf(value[1]) == 0 && Integer.valueOf(value[2]) == 0 );
+
+    }
+
 
 
 @Test
@@ -48,10 +79,10 @@ public void checkCampaignsProductTitle(){
 
     @Test
     //get the price on the main page and check styles
-    public void checkRegularPriceStylesMP() {
+    public void checkRegularPriceStylesMP()  {
         LitecartMain litecartMain = new LitecartMain(driver);
         litecartMain.openLitecart();
-        assertEquals("rgba(119, 119, 119, 1)", litecartMain.getProductRegularPriceColor());
+        assertTrue(isGrey(litecartMain.getProductRegularPriceColor()));
         assertEquals( "line-through solid rgb(119, 119, 119)",litecartMain.getProductRegularPriceTextDecor());
 
     }
@@ -62,7 +93,7 @@ public void checkCampaignsProductTitle(){
     public void checkCampaignsPriceStylesMP() {
         LitecartMain litecartMain = new LitecartMain(driver);
         litecartMain.openLitecart();
-        assertEquals("rgba(204, 0, 0, 1)", litecartMain.getProductCampaignsPriceColor());
+        assertTrue(isRed(litecartMain.getProductCampaignsPriceColor()));
         assertEquals( "none solid rgb(204, 0, 0)",litecartMain.getProductCampaignsPriceTextDecor());
 
     }
@@ -74,7 +105,7 @@ public void checkCampaignsProductTitle(){
         LitecartMain litecartMain = new LitecartMain(driver);
         litecartMain.openLitecart();
         ProductPage productPage = litecartMain.openCampaignsProduct();
-        assertEquals("rgba(102, 102, 102, 1)", productPage.getProductRegularPriceColor());
+        assertTrue(isGrey(productPage.getProductRegularPriceColor()));
         assertEquals( "none solid rgb(204, 0, 0)",productPage.getProductCampaignsPriceStyles());
 
     }
@@ -86,10 +117,16 @@ public void checkCampaignsProductTitle(){
         LitecartMain litecartMain = new LitecartMain(driver);
         litecartMain.openLitecart();
         ProductPage productPage = litecartMain.openCampaignsProduct();
-        assertEquals("rgba(204, 0, 0, 1)", productPage.getProductCampaignsPriceColor());
+       assertTrue(isRed(productPage.getProductCampaignsPriceColor()));
         assertEquals( "none solid rgb(204, 0, 0)",productPage.getProductCampaignsPriceStyles());
 
     }
+
+
+
+
+
+
 
 
 

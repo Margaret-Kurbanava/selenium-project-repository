@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import org.openqa.selenium.support.Color;
 
 public class LitecartMain {
 
@@ -60,18 +61,36 @@ public class LitecartMain {
 
 
 
-    public String getProductPriceColor(By product, By productPrice){
-        return driver.findElement(product).findElement(productPrice).getCssValue("color");
+    public String getProductPriceColor(By product, By productPrice)  {
+
+
+
+
+        String color = driver.findElement(product).findElement(productPrice).getCssValue("color");
+
+
+
+
+
+
+
+        return color;
 
     }
-    public String getProductCampaignsPriceColor(){
+
+
+
+    public String getProductCampaignsPriceColor()  {
         return getProductPriceColor(campaignsProduct, productCampaignPrice);
     }
 
 
-    public String getProductRegularPriceColor(){
+    public String getProductRegularPriceColor() {
         return getProductPriceColor(campaignsProduct, productRegularPrice);
     }
+
+
+
 
 
 
