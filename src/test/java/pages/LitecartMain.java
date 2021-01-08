@@ -10,9 +10,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import org.openqa.selenium.support.Color;
 
-public class LitecartMain {
+public class LitecartMain extends BasePage{
 
     private WebDriver driver;
 
@@ -26,6 +25,7 @@ public class LitecartMain {
 
     private By productRegularPrice = By.cssSelector(".regular-price");
     private By productCampaignPrice = By.cssSelector(".campaign-price");
+    private By createAccountLink = By.cssSelector("form[name=login_form] a");
 
 
 
@@ -37,6 +37,16 @@ public class LitecartMain {
  public void openLitecart(){
         driver.get(litecartMainLink);
  }
+
+
+//click 'New customers click here'
+    public CreateAccountPage openCreateAccountLink(){
+        driver.findElement(createAccountLink).click();
+
+        return new CreateAccountPage(driver);
+    }
+
+
 
 
 
