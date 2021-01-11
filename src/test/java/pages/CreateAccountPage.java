@@ -2,6 +2,7 @@ package pages;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -55,6 +56,11 @@ public class CreateAccountPage extends BasePage {
     public void selectFromDropDown(By dropdown, String option) {
 
         Select select = new Select(driver.findElement(dropdown));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].style.opacity =1",select);
+
+
         select.selectByVisibleText(option);
     }
 
