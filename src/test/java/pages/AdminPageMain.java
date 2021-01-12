@@ -20,6 +20,12 @@ public class AdminPageMain {
   private By menuLink = By.cssSelector("#app- >a");
   private By nestedLink = By.cssSelector(".docs a");
 
+  private By menuLinkConstuctor(String link){
+
+     return By.cssSelector("a[href*=\"http://localhost/litecart/admin/?app=" + link);
+  }
+
+
     private By title = By.tagName("h1");
 
     public AdminPageMain (WebDriver driver) {this.driver= driver;}
@@ -47,5 +53,17 @@ public class AdminPageMain {
         }
 
 
+
     }
+
+
+    public void clickMenuLink(String link) throws InterruptedException {
+
+        Thread.sleep(500);
+
+        driver.findElement(menuLinkConstuctor(link)).click();
+
+    }
+
+
 }

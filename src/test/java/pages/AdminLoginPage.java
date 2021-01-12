@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class AdminLoginPage {
     private  WebDriver driver;
@@ -36,11 +35,12 @@ public class AdminLoginPage {
     }
 
 
-    public void loginToAdmin(){
+    public AdminPageMain loginToAdmin(){
        openAdminLoginPage();
        enterUsename("admin");
        enterPassword("admin");
        clickLogin();
+        return new AdminPageMain(driver);
     }
 
 
