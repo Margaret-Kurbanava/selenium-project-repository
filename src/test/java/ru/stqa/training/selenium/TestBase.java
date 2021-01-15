@@ -53,11 +53,15 @@ public class TestBase {
         System.out.println(((HasCapabilities) driver).getCapabilities());
 
         //wait
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
         wait = new WebDriverWait(driver, 10);
 
         //Shutdown the browser. Replacement for TestNG AfterAll.
       // Runtime.getRuntime().addShutdownHook(new Thread(() -> { driver.quit(); driver = null; }));
     }
+
+
 
 
 

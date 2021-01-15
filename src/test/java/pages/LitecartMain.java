@@ -29,8 +29,6 @@ public class LitecartMain extends BasePage{
 
 
 
-
-
     public LitecartMain (WebDriver driver) {this.driver= driver;}
 
 
@@ -39,7 +37,18 @@ public class LitecartMain extends BasePage{
  }
 
 
-//click 'New customers click here'
+
+
+    public ProductPage openFirstProduct(){
+        driver.findElement(product).click();
+        return new ProductPage(driver);
+    }
+
+
+
+
+
+    //click 'New customers click here'
     public CreateAccountPage openCreateAccountLink(){
         driver.findElement(createAccountLink).click();
 

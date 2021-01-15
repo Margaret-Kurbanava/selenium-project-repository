@@ -1,10 +1,11 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
+        import org.openqa.selenium.WebDriver;
+        import org.openqa.selenium.support.ui.Select;
 
-import java.io.File;
+        import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 public class CatalogPage extends BasePage {
 
@@ -105,4 +106,13 @@ public class CatalogPage extends BasePage {
     public boolean isProductDisplayed() {
         return driver.findElement(catalogLink).isDisplayed();
     }
+
+
+
+
+
 }
+
+
+
+
