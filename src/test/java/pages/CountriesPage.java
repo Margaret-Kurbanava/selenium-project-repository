@@ -24,9 +24,14 @@ public class CountriesPage {
     private By countryLink = By.cssSelector("form[name='countries_form'] a:not([title=\"Edit\"])");
     // or "table.dataTable a:not([title="Edit"])"
 
-    private By zone = By.cssSelector("#table-zones input[name*='name']");
+    private By zone = By.cssSelector("#table-zones input[name*='name'][type='hidden']");
 
     private String CountriesPage = "http://localhost/litecart/admin/?app=countries&doc=countries";
+
+public By countryLinkByName(String country){
+    return  By.xpath("//a[contains(text(),'"+ country+"')]");
+}
+
 
 
     public void openCountriesPage() {
@@ -65,7 +70,8 @@ public class CountriesPage {
         return isSorted(countriesList);
     }
 
-    // collect all zones and verify if the list is sorted
+/*
+
     public void checkZones(){
 
         List<WebElement> countriesLinks = driver.findElements(countryLink);
@@ -89,27 +95,46 @@ if (zones.size()>1) {
             countriesLinks = driver.findElements(countryLink);
 
         }
+*/
 
 
 
 
 
+// collect all zones and verify if the list is sorted
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void selectCountry (String country){
+        driver.findElement(countryLinkByName(country)).click();
 
     }
+
+
+    public boolean areZonesSorted(){
+
+        List<WebElement> zones = driver.findElements(zone);
+        List<String> zonesList = zones.stream().map(e -> e.getAttribute("value")).collect(Collectors.toList());
+
+        System.out.println(isSorted(zonesList));
+
+        return isSorted(zonesList);
+
+
+ }
+
+public void goBack(){
+    driver.navigate().back();
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
